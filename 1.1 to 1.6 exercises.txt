@@ -1,0 +1,85 @@
+> 10
+10
+> (/ 6 2)
+3
+> (/ 5 2)
+5/2
+> (+ (* 2 4) (- 4 6))
+6
+> (define a 3)
+> a
+3
+> (define b (+ a 1))
+> b
+4
+> (+ a b (* a b))
+19
+> (= a b)
+#f
+> (= a a)
+#t
+> (if (and (> a b) (< b (* a b))) b a)
+3
+> (cond ((= a 4) 6)
+        (= b 4) (+ 6 7 a)
+        ())
+*** ERROR IN console2@13:1 -- Ill-formed special form
+(cond ((= a 4) 6) (= b 4) (+ 6 7 a) ())
+> (cond ((= a 4) 6)
+        ((= b 4) (+ 6 7 a))
+        (else 25))
+16
+> (+ 2 (if (> b a) b a))
+6
+> (* (cond ((> a b) a)
+           ((< a b) b)
+           (else -1))
+     (+ a 1))
+16
+> (/ (+ 5 4 (- 2 (- 3 (+ 6 (/ 4 5))))) (* 3 (- 6 2) (- 2 7)))
+-37/150
+> (define (large-two-square a b c) 
+    (if (and (<= a b) (<= a c)) (+ (square a) (square b)))
+)
+> (larget-two-square 1 2 3)
+*** ERROR IN console2@28:2 -- Unbound variable: larget-two-square
+1> (large-two-square 1 2 3)
+5
+1> (define (largest
+
+)))
+*** ERROR IN console2@30:1 -- Ill-formed special form
+(define (largest))
+1> *** ERROR IN console2@32:3 -- Datum or EOF expected
+1> (define (largest-two-square a b c)
+    (cond ((and (<= a b) (<= a c)) (+ (square b) (square c)))
+          ((and (<= b a) (<= b c)) (+ (square a) (square c)))
+          ((and (<= c a) (<= c b)) (+ (square a) (square b)))))
+*** WARNING -- defining global variable: largest-two-square
+1> (large-two-square 1 2 3)
+5
+1> (large-two-square 2 1 3)
+1> (large-two-square 2 1 3)
+1> (largest-two-square 2 1 3)
+13
+1> (largest-two-square 2 1 3)
+13
+1> (largest-two-square 2 3 1)
+13
+1> (largest-two-square 2 2 2)
+8
+1> (define (p) (p))
+*** WARNING -- defining global variable: p
+1> p
+#<procedure #3 p>
+1> (p)
+*** INTERRUPTED IN console2@46:1
+2> (p )
+*** INTERRUPTED IN console2@47:1
+3> (define (p) (p))
+*** WARNING -- defining global variable: p
+3> (define (test x y) (if (= x 0) 0 y))
+*** WARNING -- defining global variable: test
+3> (test 0 (p))
+*** INTERRUPTED IN console2@50:9
+4> 
