@@ -1,0 +1,40 @@
+> (define (cbrt x) (cbrt-iter 1.0 x))
+> (define (cbrt-iter g x)
+    (if (good-enough? g)
+        g
+        (cbrt-iter (improve g) x)))
+> (define (improve g)
+    
+
+)
+*** ERROR IN console2@6:1 -- Ill-formed special form
+(define (improve g))
+> (define (improve g x)
+    (/ (+ (/ x (* y y)) (* 2 y)) 3))
+> (define (cbrt-iter g x)
+    (if (good-enough? g)
+        g
+        (cbrt-iter (improve g x) x)))
+> (define (good-enough? pg g)
+     (< (/ (abs (- pg g)) g) 0.00000000000000000000001))
+> (define (cbrt-iter g x)
+    (if (good-enough? (improve g x) g)
+        g
+        (cbrt-iter (improve g x) x)))
+> (cbrt 8)
+*** ERROR IN improve, console2@11:19 -- Unbound variable: y
+1> (define (improve g x)
+    (/ (+ (/ x (* g g)) (* 2 g)) 3))
+*** WARNING -- defining global variable: improve
+1> (cbrt 8)
+2.
+1> (cbrt 27)
+3.
+1> (cbrt 1234)
+10.726014668827325
+1> 
+
+
+The new good-enough procedure is independent on value of x
+it works on difference between consecutive guesses
+it is taken relative to guess to that is work on wide range of numbers
