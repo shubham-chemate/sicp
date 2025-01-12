@@ -1,0 +1,15 @@
+- recursive process
+(define (f n)
+  (if (< n 3)
+      n
+      (+ (f (- n 1)) 
+         (* 2 (f (- n 2))) 
+         (* 3 (f (- n 3))))))
+
+- iterative process
+(define (f n cnt fn1 fn2 fn3)
+  (if (= cnt n) 
+      (+ fn1 (* 2 fn2) (* 3 fn3))
+      (f n (+ cnt 1) (+ fn1 (* 2 fn2) (* 3 fn3)) fn1 fn2)))
+
+(f 5 3 2 1 0)
