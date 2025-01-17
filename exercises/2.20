@@ -1,0 +1,47 @@
+------------> check if all elements have same parity
+
+(define (same-parity x . y)
+  (define (chkEven p) 
+    (= (remainder p 2) 0))
+  (define (chkOdd p)
+    (= (remainder p 2) 1))
+  (define (chkAllEven p)
+    (if (null? (cdr p))
+        (chkEven (car p))
+        (and (chkEven (car p)) (chkAllEven (cdr p)))))
+  (define (chkAllOdd p)
+    (if (null? (cdr p))
+        (chkOdd (car p))
+        (and (chkOdd (car p)) (chkAllOdd (cdr p)))))
+  (or (and (chkEven x) (chkAllEven y))
+      (and (chkOdd x) (chkAllOdd y))))
+
+------------> return all elements with parity same as first element
+
+METHOD 1
+
+(define (same-parity x . y)
+  (define (same-parity-it l)
+  (cond ((null? l) (list x))
+        ((= (remainder x 2)
+            (remainder (car l) 2)) 
+         (cons (car l) (same-parity-it (cdr l))))
+        (else (same-parity-it (cdr l)))))
+  (same-parity-it y))
+
+
+METHOD 2
+
+(define (chkParity x y)
+  (= (remainder x 2)
+     (remainder y 2)))
+
+(define (same-parity x . y)
+  (define (same-parity2 ans x y)
+    (cond ((null? y) ans)
+     ((chkParity x (car y))
+        (same-parity2 (cons ans (list (car y)))
+                      x
+                      (cdr y)))
+        (else (same-parity2 ans x (cdr y)))))
+  (same-parity2 (list x) x y))
