@@ -1,0 +1,12 @@
+(define (reverse-list lst)
+  (if (null? (cdr lst))
+      (list (car lst))
+      (cons (reverse-list (cdr lst)) (car lst))))
+
+
+(define (reverse-list lst)
+  (define (iter rlst ans)
+    (if (null? rlst)
+        ans
+        (iter (cdr rlst) (cons (car rlst) ans))))
+  (iter lst '()))

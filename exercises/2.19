@@ -1,0 +1,23 @@
+(define us-coins (list 50 25 10 5 1))
+(define uk-coins (list 100 50 20 10 5 2 1 0.5))
+
+(define (no-more? coins)
+  (null? coins))
+
+(define (count-change amt)
+  (cc amt uk-coins))
+
+(define (cc amt coin-values)
+  (cond ((= amt 0) 1)
+        ((or (< amt 0) (no-more? coin-values)) 0)
+        (else (+ (cc amt
+                     (except-first-denomination coin-values))
+                 (cc (- amt
+                        (first-denomination coin-values))
+                     coin-values)))))
+
+(define (first-denomination coins)
+  (car coins))
+
+(define (except-first-denomination coins)
+  (cdr coins))
