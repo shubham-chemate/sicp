@@ -1,0 +1,8 @@
+(define (fringe t)
+  (cond ((not (pair? t)) (list t))
+        ((null? (cdr t)) (fringe (car t)))
+        (else (append (fringe (car t))
+                      (fringe (cdr t))))))
+
+
+(fringe (list (list 1 2) (list 3 4)))
