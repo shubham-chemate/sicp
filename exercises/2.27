@@ -1,0 +1,13 @@
+(define (reverse-list lst)
+  (define (iter il ans)
+    (if (null? il)
+        ans
+        (iter (cdr il) 
+              (if (pair? (car il))
+                  (cons (reverse-list (car il))
+                        ans)
+                  (cons (car il) ans)))))
+  (iter lst '()))
+
+
+(list (list 1 2) (list 3 4))
