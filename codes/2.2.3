@@ -1,0 +1,45 @@
+(define (accumulate op initial sequence)
+  (if (null? sequence)
+      initial
+      (op (car sequence)
+          (accumulate op initial (cdr sequence)))))
+
+(define (enumerate-interval low high)
+  (if (> low high)
+      '()
+      (cons low
+            (enumerate-interval (+ low 1) high))))
+
+(define (enumerate-tree tree)
+  (cond ((null? tree) '())
+        ((not (pair? tree)) (list tree))
+        (else (append (enumerate-tree (car tree))
+                      (enumerate-tree (cdr tree))))))
+
+(define (sum-odd-squares tree)
+  (accumulate + 0
+              (map square (filter odd? (enumerate-tree tree)))))
+
+(define (fib k)
+  (define (fibit n c p)
+    (if (>= n k)
+        c
+        (fibit (+ n 1) (+ c p) c)))
+  (cond ((= k 0) 0)
+        ((= k 1) 1)
+        (else (fibit 1 1 0))))
+
+(define (even-fibs n)
+  (accumulate
+   cons
+   '()
+   (filter even? (map fib (enumerate-interval 0 n)))))
+
+(define (list-fib-squares n)
+  (accumulate
+   cons
+   '()
+   (map square (map fib (enumerate-interval 0 n)))))
+
+(define (product-of-squares-of-odd-elements sequence)
+  (accumulate * 1 (map square (filter odd? squence))))

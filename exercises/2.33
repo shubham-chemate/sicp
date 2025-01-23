@@ -1,0 +1,15 @@
+(define (map p sequence)
+  (accumulate (lambda (x y)
+                (cons (p x) y)) '() sequence))
+
+
+(define (map p sequence)
+  (accumulate (lambda (x y)
+                (cons (p x) y)) '() sequence))
+
+(define (append sq1 sq2)
+  (accumulate cons sq2 sq1))
+
+(define (length sequence)
+  (accumulate (lambda (x y)
+                (+ 1 y)) 0 sequence))
