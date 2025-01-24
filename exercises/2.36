@@ -1,0 +1,12 @@
+(define (accumulate-n op init seps)
+  (if (null? (car seps))
+      '()
+      (cons (accumulate op init (map (lambda (el) (car el)) seps))
+            (accumulate-n op init (map (lambda (el) (cdr el)) seps)))))
+
+
+(define ll (list (list 1 2 3) (list 4 5 6) (list 7 8 9) (list 10 11 12)))
+
+
+>> (accumulate-n + 0 ll)
+(22 26 30)
