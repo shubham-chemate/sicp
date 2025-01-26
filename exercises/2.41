@@ -1,0 +1,13 @@
+(define (sum-pairs n s)
+  (filter 
+   (lambda (pr) (= (+ (car pr) (car (cdr pr)) (cadr (cdr pr))) s)) 
+   (flatmap
+    (lambda (i)
+     (flatmap
+      (lambda (j)
+        (map
+         (lambda (k)
+           (list i j k))
+         (enumerate-interval 1 (- j 1))))
+      (enumerate-interval 1 (- i 1))))
+   (enumerate-interval 1 n))))
