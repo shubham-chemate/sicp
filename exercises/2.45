@@ -1,0 +1,7 @@
+(define right-split (split beside below))
+(define up-split (split below beside))
+
+(define (split fs ss)
+  (lambda (painter)
+    (let ((fp (fs painter painter)))
+      (ss painter fp))))
