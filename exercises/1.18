@@ -1,0 +1,4 @@
+(define (* a b ans)
+  (cond ((= b 0) ans)
+        ((not (even? b)) (* a (- b 1) (+ ans a)))
+        (else (* (double a) (half b) ans))))
